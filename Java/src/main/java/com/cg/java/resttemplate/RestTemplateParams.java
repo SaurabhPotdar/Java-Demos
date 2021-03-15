@@ -29,6 +29,7 @@ public class RestTemplateParams {
 	/**
 	 * Passing uriVariables to RestTemplate
 	 * https://stackoverflow.com/questions/8297215/spring-resttemplate-get-with-parameters
+	 * https://springbootdev.com/2017/11/21/spring-resttemplate-exchange-method/
 	 * @return
 	 */
 	@GetMapping(value="")
