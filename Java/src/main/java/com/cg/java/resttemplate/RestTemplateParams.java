@@ -35,7 +35,7 @@ public class RestTemplateParams {
 	@GetMapping(value="")
 	public ResponseEntity<String> bar() {
 		Map<String,String> uriVariables = new HashMap<>();
-		//http://localhost:8081/resttemplate/1?name=Shank&department=IT
+		//http://localhost:8081/resttemplate/1?name=Saurabh&department=IT
 		String url = "http://localhost:8081/resttemplate/{id}?name={name}&department={department}";
 		uriVariables.put("id", "1");
 		uriVariables.put("name", "Saurabh");
