@@ -6,10 +6,12 @@ import java.util.List;
 
 import com.cg.java.dto.Employee;
 
+@FunctionalInterface
 interface Drawable {
 	public void draw();
 }
 
+@FunctionalInterface
 interface Arithmetic {
 	public int operations(int a, int b);
 }
@@ -21,7 +23,9 @@ public class LamdaExpressions {
 
 	public static void main(String[] args) {
 
-		// Anonymous class
+		// 1. Create Impl class and Autowire it
+		
+		// 2. Anonymous class
 		Drawable drawable = new Drawable() {
 			@Override
 			public void draw() {
@@ -30,7 +34,7 @@ public class LamdaExpressions {
 		};
 		drawable.draw();
 
-		// Lambda
+		// 3. Lambda
 		Drawable drawable2 = () -> System.out.println("Drawing");
 		drawable2.draw();
 
