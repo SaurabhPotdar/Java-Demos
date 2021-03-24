@@ -1,6 +1,5 @@
 package com.cg.java.lambda;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -60,8 +59,7 @@ public class LamdaExpressions {
 			System.out.println("Runnable using lambda");
 		});
 
-		List<Employee> list = Arrays.asList(new Employee(1, "a", 1000), new Employee(2, "c", 2000),
-				new Employee(3, "d", 500), new Employee(4, "b", 1500));
+		List<Employee> list = Employee.getEmployees();
 		
 		//Sort on salary using anonymous class
 		Collections.sort(list, new Comparator<Employee>() {
