@@ -16,6 +16,9 @@ interface Arithmetic {
 }
 
 public class LamdaExpressions {
+	
+	//References
+	//https://www.youtube.com/watch?v=_TFVYmumREg&list=PLGRDMO4rOGcNXD2v76zM1nJybIwhBSwzZ&index=2
 
 	public static void main(String[] args) {
 
