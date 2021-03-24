@@ -1,8 +1,8 @@
 package com.cg.java.lambda;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;import java.util.Comparator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.cg.java.dto.Employee;
@@ -70,7 +70,17 @@ public class LamdaExpressions {
 		});
 		
 		//Sort on salary using lambdas
-		Collections.sort(list, (o1,o2) -> o1.getSalary() - o2.getSalary());
+		Collections.sort(list, (o1,o2) -> o1.getSalary() - o2.getSalary());  //Ascending
+		
+		//Sort on name, salary
+		list.sort((o1, o2) -> {
+	        if (o1.getName().compareTo(o2.getName()) == 0) {
+	        	//Same name, use salary to sort
+	            return o1.getSalary() - o2.getSalary();
+	        } else {
+	            return o1.getName().compareTo(o2.getName());
+	        } 
+	    });
 
 	}
 
