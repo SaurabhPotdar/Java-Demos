@@ -73,7 +73,20 @@ public class StreamExample {
 	    boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);  // None match condition
 	    System.out.println(allEven + " " + oneEven + " " + noneMultipleOfThree);
 		
-		// Terminal operations
+		// Terminal operations max,min,distinct,sum,count
+	    // Find employee with max salary
+	    Employee employee = Employee.getEmployees().stream().max((e1,e2) -> {
+	    	return e1.getSalary() - e2.getSalary();
+	    }).orElse(null);
+	    
+	    // We can map empolyee and convert it to int and then return int
+	    int max = Employee.getEmployees().stream().map(e -> e.getSalary()).max((a,b) -> {
+	    	return a - b;
+	    }).orElse(null);
+	    System.out.println(employee + " " + max);
+	    
+	    // Count employees having salary > 1000
+	    Employee.getEmployees().stream().filter(e -> e.getSalary() > 1000).count();
 
 	}
 
