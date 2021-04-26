@@ -39,6 +39,7 @@ public class LamdaExpressions {
 		drawable2.draw();
 
 		// Lambda with input params and return statement
+		// We can create different objects like addable, subtractable etc with diff. implementations
 		Arithmetic addable = (a, b) -> a + b;
 		System.out.println(addable.operations(1, 2));
 

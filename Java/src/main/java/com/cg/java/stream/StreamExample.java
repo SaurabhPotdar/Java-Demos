@@ -1,6 +1,7 @@
 package com.cg.java.stream;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
@@ -19,7 +20,12 @@ public class StreamExample {
 
 		List<String> list = Arrays.asList("D", "E", "F"); // We can create stream from any Collection like list,set,...
 		Stream<String> s2 = list.stream();
-		s2.forEach(s -> System.out.println(s));
+		s2.forEach(s -> {
+			// Multiple statements in for each
+			System.out.println(s);
+			int i=1;
+			i = i+1;
+		});
 
 		// Filter
 		List<Employee> employees = Employee.getEmployees().stream().filter((employee) -> employee.getSalary() > 1000)
@@ -40,9 +46,18 @@ public class StreamExample {
 						.thenComparing(Comparator.comparing(Employee::getSalary).reversed()))
 				.forEach(System.out::println);
 
-		// Map
+		// Map Converting(mapping) one object to other type
 		List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
 		numbers.stream().map((n) -> "Double is " + n * 2).forEach(System.out::println);
+		
+		// Flatmap - For iterating over nested
+		List<List<String>> namesNested = Arrays.asList( 
+			      Arrays.asList("Jeff", "Bezos"), 
+			      Arrays.asList("Bill", "Gates"), 
+			      Arrays.asList("Mark", "Zuckerberg"));
+		List<String> namesFlatStream = namesNested.stream().flatMap(Collection::stream)
+	      .collect(Collectors.toList());
+		System.out.println(namesFlatStream);  //[Jeff, Bezos, Bill, Gates, Mark, Zuckerberg]
 
 		// Statistics
 		IntSummaryStatistics stats = numbers.stream().mapToInt((x) -> x).summaryStatistics();
@@ -51,7 +66,14 @@ public class StreamExample {
 		System.out.println("Sum of all numbers : " + stats.getSum());
 		System.out.println("Average of all numbers : " + stats.getAverage());
 		
-		//Terminal operations
+		// allMatch, anyMatch, and noneMatch
+		List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
+		boolean allEven = intList.stream().allMatch(i -> i % 2 == 0);  // check if all element satisfy condition (a && b && ..)
+	    boolean oneEven = intList.stream().anyMatch(i -> i % 2 == 0);  // atleast one satisfies condition (a || b || ..)
+	    boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);  // None match condition
+	    System.out.println(allEven + " " + oneEven + " " + noneMultipleOfThree);
+		
+		// Terminal operations
 
 	}
 
