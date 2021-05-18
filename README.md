@@ -9,4 +9,6 @@ Java demos
 
 Mockito - https://github.com/SaurabhPotdar/Mockito
 
+PowerMockito - https://github.com/SaurabhPotdar/PowerMockito
+
 JPA - https://github.com/SaurabhPotdar/jpa-demo
