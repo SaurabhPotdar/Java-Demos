@@ -23,7 +23,9 @@ public class LamdaExpressions {
 
 	public static void main(String[] args) {
 
-		// 1. Create Impl class and Autowire it
+		// 1. Create Impl class for interface and implement methods
+		// But the impl class will have fixed implementation, we will have to create another
+		// impl for different implementation.
 		
 		// 2. Anonymous class
 		Drawable drawable = new Drawable() {
