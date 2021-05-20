@@ -1,6 +1,6 @@
 # Java
 Java demos
-1) [Lambda](https://github.com/SaurabhPotdar/Java-Demos/blob/main/Java/src/main/java/com/cg/java/lambda/LamdaExpressions.java)
+1) [Lambda](https://github.com/SaurabhPotdar/Java-Demos/tree/main/Java/src/main/java/com/cg/java/lambda)
 2) [Mongo DB](https://github.com/SaurabhPotdar/Java-Demos/tree/main/Java/src/main/java/com/cg/java/mongodb)
 3) [Optional](https://github.com/SaurabhPotdar/Java-Demos/blob/main/Java/src/main/java/com/cg/java/optional/OptionalExample.java)
 4) [Stream API](https://github.com/SaurabhPotdar/Java-Demos/blob/main/Java/src/main/java/com/cg/java/stream/StreamExample.java)
