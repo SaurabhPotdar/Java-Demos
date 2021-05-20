@@ -67,7 +67,7 @@ public class OptionalExample {
 		computer.getSoundcard().setName(Optional.of("Hello"));
 		Optional.ofNullable(computer).map(c -> c.getSoundcard()).flatMap(n -> n.getName())
 				.filter(str -> "Hello".equals(str)).ifPresent(System.out::println);
-
+		
 	}
 
 }

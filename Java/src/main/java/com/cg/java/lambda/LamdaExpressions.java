@@ -12,6 +12,7 @@ interface Drawable {
 }
 
 @FunctionalInterface
+// Interface should have single abstract method, otherwise compiler throws an error.
 interface Arithmetic {
 	public int operations(int a, int b);
 }
@@ -36,7 +37,7 @@ public class LamdaExpressions {
 			}
 		};
 		drawable.draw();
-
+		
 		// 3. Lambda
 		Drawable drawable2 = () -> System.out.println("Drawing");
 		drawable2.draw();
