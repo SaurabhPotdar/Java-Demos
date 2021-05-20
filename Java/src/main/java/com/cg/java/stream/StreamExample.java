@@ -41,9 +41,11 @@ public class StreamExample {
 		Employee.getEmployees().stream().sorted((e1, e2) -> e1.getSalary() - e2.getSalary()); // Using lambdas for Objects
 
 		// Sort by name in ascending and salary in descending
+		// Use Comparator.comparingInt as Comparator.comparing does autoboxing and unboxing which affects performance
+		// Comparator.comparingInt is faster
 		Employee.getEmployees().stream()
 				.sorted(Comparator.comparing(Employee::getName).reversed()
-						.thenComparing(Comparator.comparing(Employee::getSalary).reversed()))
+						.thenComparing(Comparator.comparingInt(Employee::getSalary).reversed()))
 				.forEach(System.out::println);
 
 		// Map Converting(mapping) one object to other type
