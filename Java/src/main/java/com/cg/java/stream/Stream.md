@@ -114,11 +114,26 @@ StringBuilder concat = Arrays.stream(grades)
 
 ## Collecting stream
 We want map object and store in a new list.
-```.map().forEach(p->list.append(p))``` will throw a concurrent modification exception for parallel stream.</br>
-To avoid this use
-```.map().collect(Collectors.toList())```</br>
-Joining string: ```.collect(Collectors.joining(delimeter:','))```
-
-
-
-
+```collect(supplier, accumulator, combiner)```
+```
+// Collect names of product
+products.stream().collect(
+	ArrayList::new,  //Each thread uses separate container
+	(list,p) -> list.add(p.getName()),
+	ArrayList::addAll  //add results from all lists(threads) to a single list
+);
+```
+**Collectors** interface provides us with implementataion of supplier, accumulator, combiner and finisher. So we can directly use ```products.stream().collect(Collectors.toList())```.
+This also takes care of parallel stream and does not throw concurrent modification exception.</br>
+### Joining string:
+```.collect(Collectors.joining(delimeter:','))```
+### Collectors.toMap():
+Each category is a key and value is sum of products of that category.
+```
+Map<String,Integer> map = products.stream()
+	.collect(Collectors.toMap(
+		Product::getCategory,  //key mapper function
+		Product::getPrice,  //value mapper function
+		Integer::sum));  //merge function
+```
+Merge function is used merge results for same key, here we want to sum them.
