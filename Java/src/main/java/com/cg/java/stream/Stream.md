@@ -93,7 +93,7 @@ Optional<Integer> opt = Employee.getEmployees().stream()
 	.map(e -> e.getSalary())
 	.reduce((subtotal,element) -> subtotal+element);
 ```
-We can also provide initial value, and if the stream is empty we get initial value insted of empty Optional.
+We can also provide initial value, and if the stream is empty we get initial value insted of an empty Optional.
 ```
 int sum = Employee.getEmployees().stream()
 	.map(e -> e.getSalary())
@@ -109,14 +109,14 @@ Another example
 ```
 StringBuilder concat = Arrays.stream(grades)
 	.parallel()
-    .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
+    	.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
 ```
 
 ## Collecting stream
 We want map object and store in a new list.
 ```.map().forEach(p->list.append(p))``` will throw a concurrent modification exception for parallel stream.</br>
 To avoid this use
-```.map().collect(Collectors.toList())```
+```.map().collect(Collectors.toList())```</br>
 Joining string: ```.collect(Collectors.joining(delimeter:','))```
 
 
