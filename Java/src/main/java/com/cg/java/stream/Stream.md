@@ -174,3 +174,15 @@ Map<Category,Integer> map = products.stream()
 			Collectors.reducing(0, Integer::sum)  //Reduce each category list to single value
 		)));
 ```
+## Partitioning
+Partiotion into two groups based on a predicate.</br>
+e.g cheap and expensive products
+```
+Map<Boolean,Product> map = products.stream()
+	.collect(Collectors.partitioningBy(p -> p.getPrice()>100))
+```
+Result is a map with two keys: true,false
+```
+expensive = map.get(true).collect(Collectors.toList())
+cheap = map.get(false).collect(Collectors.toList())
+```
