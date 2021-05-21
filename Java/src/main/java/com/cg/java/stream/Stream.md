@@ -26,7 +26,7 @@ List<Employee> employees = Employee.getEmployees().stream()
 	.collect(Collectors.toList());
 ```
 
-4. **Map**- Converting one object to other (One to One transformation)
+4. **Map** - Converting one object to other (One to One transformation)
 ```
 Employee.getEmployees().stream().map(e -> e.getSalary())
 ```
@@ -43,8 +43,8 @@ List<String> namesFlatStream = namesNested.stream()
 System.out.println(namesFlatStream);  //[Jeff, Bezos, Bill, Gates, Mark, Zuckerberg]
 ```
 
-6. **Search** - All search operations are terminal
-findFirst, findAny, anyMatch are shortcircuit operators. If the order dosent matter it is better to use findAny.</br>
+6. **Search**</br>
+All search operations are terminal. findFirst, findAny, anyMatch are shortcircuit operators. If the order dosent matter it is better to use findAny.</br>
 allMatch(all elements should satisfy condition), noneMatch are not shortcircuit operators so they will continue forever for infinite stream
 ```
 List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
@@ -53,7 +53,7 @@ boolean oneEven = intList.stream().anyMatch(i -> i % 2 == 0);
 boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);
 ```
 
-7. **Sorting**
+7. **Sorting**</br>
 Sorting for String,int,..
 ```
 List<String> fruits = Arrays.asList("Apple", "Mango", "Banana");
@@ -73,14 +73,14 @@ Employee.getEmployees().stream()
 	.forEach(System.out::println);
 ```
 
-8. **Reduce**
-For empty stream, we get empty Optional
+8. **Reduce**</br>
+For an empty stream, we get an empty Optional
 ```
 Optional<Integer> opt = Employee.getEmployees().stream()
 	.map(e -> e.getSalary())
 	.reduce((subtotal,element) -> subtotal+element);
 ```
-We can also provide initial value, if the stream is empty we get initial value.
+We can also provide initial value, and if the stream is empty we get initial value insted of empty Optional.
 ```
 int sum = Employee.getEmployees().stream()
 	.map(e -> e.getSalary())
