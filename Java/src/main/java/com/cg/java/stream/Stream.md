@@ -128,12 +128,49 @@ This also takes care of parallel stream and does not throw concurrent modificati
 ### Joining string:
 ```.collect(Collectors.joining(delimeter:','))```
 ### Collectors.toMap():
-Each category is a key and value is sum of products of that category.
+Get the sum of products in each category. So category is the key and value is sum of products in that category.
 ```
-Map<String,Integer> map = products.stream()
+Map<Category,Integer> map = products.stream()
 	.collect(Collectors.toMap(
-		Product::getCategory,  //key mapper function
+		Category::getCategory,  //key mapper function
 		Product::getPrice,  //value mapper function
 		Integer::sum));  //merge function
 ```
 Merge function is used merge results for same key, here we want to sum them.
+
+## Grouping
+e.g Group products of same category together
+```
+Map<Category,List<Product>> map = products.stream()
+	.collect(Collectors.groupingBy(Product::getCategory));
+```
+What if we want key as the Category name and value list of product names in same category?
+```
+Map<Category,List<String>> map = products.stream()
+	.collect(Collectors.groupingBy(Product::getCategory))
+	.map()  //Collect is terminal, so this is not possible;
+```
+```
+Map<Category,List<String>> map = products.stream()
+	.map(Product::getName)
+	.collect()  //Also not possible, as we only have product names after mapping
+```
+```
+Map<Category,List<String>> map = products.stream()
+	.collect(Collectors.groupingBy(
+		Product::getCategory,   //key in hashmap
+		Collectors.mapping(
+			Product::getName,
+			Collectors.toList()  //Collect each category list
+		)));
+```
+Get the sum of products in each category. This is done above using ```toMap()```, we also use Collectors.mapping.
+```
+Map<Category,Integer> map = products.stream()
+	.collect(Collectors.groupingBy(
+		Product::getCategory,   //key in hashmap
+		Collectors.mapping(
+			Product::getPrice,
+			Collectors.reducing(0, Integer::sum)  //Reduce each category list to single value
+		)));
+```
