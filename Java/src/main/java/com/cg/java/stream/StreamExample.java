@@ -44,8 +44,8 @@ public class StreamExample {
 		// Use Comparator.comparingInt as Comparator.comparing does autoboxing and unboxing which affects performance
 		// Comparator.comparingInt is faster
 		Employee.getEmployees().stream()
-				.sorted(Comparator.comparing(Employee::getName).reversed()
-						.thenComparing(Comparator.comparingInt(Employee::getSalary).reversed()))
+				.sorted(Comparator.comparing(Employee::getName)
+				.thenComparing(Comparator.comparingInt(Employee::getSalary).reversed()))
 				.forEach(System.out::println);
 
 		// Map Converting(mapping) one object to other type
@@ -89,6 +89,8 @@ public class StreamExample {
 	    
 	    // Count employees having salary > 1000
 	    Employee.getEmployees().stream().filter(e -> e.getSalary() > 1000).count();
+	    
+	    System.out.println(Employee.getEmployees().stream().map(e -> e.getSalary()).reduce(0, (r,e)->r+e, (r,i)->r+i));
 
 	}
 
