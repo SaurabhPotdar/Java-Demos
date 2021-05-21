@@ -35,8 +35,8 @@ Employee.getEmployees().stream().map(e -> e.getSalary())
 ```
 List<List<String>> namesNested = Arrays.asList( 
 	Arrays.asList("Jeff", "Bezos"), 
-    Arrays.asList("Bill", "Gates"), 
-    Arrays.asList("Mark", "Zuckerberg"));
+    	Arrays.asList("Bill", "Gates"), 
+    	Arrays.asList("Mark", "Zuckerberg"));
 List<String> namesFlatStream = namesNested.stream()
 	.flatMap(Collection::stream)
 	.collect(Collectors.toList());
@@ -54,14 +54,26 @@ boolean noneMultipleOfThree = intList.stream().noneMatch(i -> i % 3 == 0);
 ```
 
 7. Sorting
+Sorting for String,int,..
 ```
-// Sorting for String,int,..
 List<String> fruits = Arrays.asList("Apple", "Mango", "Banana");
 fruits.stream().sorted(Comparator.naturalOrder()).forEach(System.out::println); // Ascending
 fruits.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println); // Descemding
 ```
+For sorting Objects, we need to specify field for sorting
+```
+Employee.getEmployees().stream().sorted((e1, e2) -> e1.getSalary() - e2.getSalary()); // Using lambdas for Objects
+```
+Use Comparator.comparingInt for primitive types as Comparator.comparing does autoboxing and unboxing which affects performance.
+```
+// Sort by name in ascending and salary in descending
+Employee.getEmployees().stream()
+	.sorted(Comparator.comparing(Employee::getName)
+	.thenComparing(Comparator.comparingInt(Employee::getSalary).reversed()))
+	.forEach(System.out::println);
+```
 
-
+8. Reduce
 
 
 
