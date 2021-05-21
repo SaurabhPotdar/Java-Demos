@@ -22,10 +22,9 @@ Lambda just uses a copy of variable on stack, and if that is changed the program
 For Runnable, the lambda is running in background and in between we change the variable used by lambda.
 
 3. Lambdas on primitive type</br>
-```Comparator.comparing()``` does boxing and unboxing and this reduces performance. So use ```Comparator.comparingInt()```
+```Comparator.comparing()``` expects Object i.e Integer so it does boxing and unboxing, and this reduces performance. So use ```Comparator.comparingInt()```
 ```
-ToIntFunction<String> a = s -> s.length();  //Sort on 
+ToIntFunction<String> a = s -> s.length();  //Sort based on length
 Comparator<String> cmp = Comparator.compareInt(a);
 list.sort(cmp);
-
 ```
