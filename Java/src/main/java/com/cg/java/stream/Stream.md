@@ -144,6 +144,11 @@ e.g Group products of same category together
 Map<Category,List<Product>> map = products.stream()
 	.collect(Collectors.groupingBy(Product::getCategory));
 ```
+For parallel stream ```groupingByConcurrent``` is more efficient.
+```
+Map<Category,List<Product>> map = products.parallelStream()
+	.collect(Collectors.groupingByConcurrent(Product::getCategory));
+```
 What if we want key as the Category name and value list of product names in same category?
 ```
 Map<Category,List<String>> map = products.stream()
@@ -174,8 +179,9 @@ Map<Category,Integer> map = products.stream()
 			Collectors.reducing(0, Integer::sum)  //Reduce each category list to single value
 		)));
 ```
+
 ## Partitioning
-Partiotion into two groups based on a predicate.</br>
+Partition into two groups based on a predicate.</br>
 e.g cheap and expensive products
 ```
 Map<Boolean,Product> map = products.stream()
@@ -185,4 +191,26 @@ Result is a map with two keys: true,false
 ```
 expensive = map.get(true).collect(Collectors.toList())
 cheap = map.get(false).collect(Collectors.toList())
+```
+
+## Specialized Streams
+IntStream, LongStream, DoubleStream are specialized streams for primitive types. Avoids boxing, unboxing overhead for faster performance.
+```
+ OptionalInt opt = Employee.getEmployees().stream()
+	.mapToInt(e -> e.getSalary())
+	.reduce((subtotal,element)->subtotal+element);
+```
+IntStream has methods sum(), so no need to use reduce.
+```
+int sum = Employee.getEmployees().stream()
+	.mapToInt(e -> e.getSalary())
+	.sum();
+```
+We can also use summaryStatistics() for specialized streams.
+```
+IntSummaryStatistics stats = numbers.stream().mapToInt((x) -> x).summaryStatistics();
+System.out.println("Highest number in List : " + stats.getMax());
+System.out.println("Lowest number in List : " + stats.getMin());
+System.out.println("Sum of all numbers : " + stats.getSum());
+System.out.println("Average of all numbers : " + stats.getAverage());
 ```
