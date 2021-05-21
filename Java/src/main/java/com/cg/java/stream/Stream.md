@@ -50,7 +50,7 @@ List<List<String>> namesNested = Arrays.asList(
     	Arrays.asList("Bill", "Gates"), 
     	Arrays.asList("Mark", "Zuckerberg"));
 List<String> namesFlatStream = namesNested.stream()
-	.flatMap(Collection::stream)
+	.flatMap(Collection::stream)  //convert flattened array to stream and collect it
 	.collect(Collectors.toList());
 System.out.println(namesFlatStream);  //[Jeff, Bezos, Bill, Gates, Mark, Zuckerberg]
 ```
