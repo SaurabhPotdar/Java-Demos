@@ -1,3 +1,13 @@
+## Collections vs Streams
+| Collection | Stream |
+| --- | --- |
+| stores elements | does not store |
+| eager, list.sort() sorts the list | lazy |
+| imperative | functional - apply functions to immutable to produce new immutable values |
+| modifies the collection | does not modify source |
+| can be iterated multiple times | stream is consumed in one iteration |
+| finite data | infinite data |
+
 ## Lazy evaluation
 Streams are lazily evaluated, so stream.sorted() will not do anything until we do a terminal operation on it.</br>
 **Intermediate**: distinct, map, flatMap, limit, skip, peek, sorted, distinct</br>
