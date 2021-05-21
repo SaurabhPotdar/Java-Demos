@@ -10,7 +10,7 @@
 
 ## Lazy evaluation
 Streams are lazily evaluated, so stream.sorted() will not do anything until we do a terminal operation on it.</br>
-**Intermediate**: distinct, map, flatMap, limit, skip, peek, sorted, distinct</br>
+**Intermediate**: distinct, map, flatMap, limit, skip, peek, sorted, distinct, parallel</br>
 **Terminal**: collect, count, forEach, min, max, reduce, all search operations(findFirst, allMatch,..)
 
 ## Creating stream
