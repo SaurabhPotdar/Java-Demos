@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -92,8 +93,8 @@ public class StreamExample {
 	    Employee.getEmployees().stream().filter(e -> e.getSalary() > 1000).count();
 	    
 	    // Reduce
-	    Optional<Integer> opt = Employee.getEmployees().stream()
-				.map(e -> e.getSalary())
+	    OptionalInt opt = Employee.getEmployees().stream()
+				.mapToInt(e -> e.getSalary())
 				.reduce((subtotal,element)->subtotal+element);
 	    opt.ifPresent(System.out::println);
 	    
