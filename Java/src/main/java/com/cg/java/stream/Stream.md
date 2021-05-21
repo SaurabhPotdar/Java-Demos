@@ -44,7 +44,7 @@ System.out.println(namesFlatStream);  //[Jeff, Bezos, Bill, Gates, Mark, Zuckerb
 ```
 
 6. Search - All search operations are terminal
-findFirst, findAny, anyMatch are shortcircuit operators. For unordered stream findFirst and findAny will act same.</br>
+findFirst, findAny, anyMatch are shortcircuit operators. If the order dosent matter it is better to use findAny.</br>
 allMatch(all elements should satisfy condition), noneMatch are not shortcircuit operators so they will continue forever for infinite stream
 ```
 List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
@@ -74,6 +74,38 @@ Employee.getEmployees().stream()
 ```
 
 8. Reduce
+For empty stream, we get empty Optional
+```
+Optional<Integer> opt = Employee.getEmployees().stream()
+	.map(e -> e.getSalary())
+	.reduce((subtotal,element) -> subtotal+element);
+```
+We can also provide initial value, if the stream is empty we get initial value.
+```
+int sum = Employee.getEmployees().stream()
+	.map(e -> e.getSalary())
+	.reduce(0, (subtotal,element) -> subtotal+element);
+```
+For parallel stream, we have ```reduce(initialValue, accumulator, combiner)```, combiner is used to combine results from parallel threads.
+```
+int sum = Employee.getEmployees().stream()
+	.map(e -> e.getSalary())
+	.reduce(0, Integer::sum, Integer::sum);
+```
+Another example
+```
+StringBuilder concat = Arrays.stream(grades)
+	.parallel()
+    .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
+```
+
+9. Collecting stream
+We want map object and store in a new list.
+```.map().forEach(p->list.append(p))``` will throw a concurrent modification exception for parallel stream.</br>
+To avoid this use
+```.map().collect(Collectors.toList())```
+Joining string: ```.collect(Collectors.joining(delimeter:','))```
+
 
 
 
