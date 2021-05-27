@@ -10,7 +10,7 @@
 
 ## Lazy evaluation
 Streams are lazily evaluated, so stream.sorted() will not do anything until we do a terminal operation on it.</br>
-**Intermediate**: distinct, map, flatMap, limit, skip, peek, sorted, distinct</br>
+**Intermediate**: distinct, map, flatMap, limit, skip, peek, sorted, distinct, parallel</br>
 **Terminal**: collect, count, forEach, min, max, reduce, all search operations(findFirst, allMatch,..)
 
 ## Creating stream
@@ -214,3 +214,7 @@ System.out.println("Lowest number in List : " + stats.getMin());
 System.out.println("Sum of all numbers : " + stats.getSum());
 System.out.println("Average of all numbers : " + stats.getAverage());
 ```
+
+## Parallel Stream
+Does it matter where we write parallel()?</br>
+No as it is an intermediate operation. When we use parallel() a bit is set, and before executing terminal operation compiler checks whether that bit is set.
