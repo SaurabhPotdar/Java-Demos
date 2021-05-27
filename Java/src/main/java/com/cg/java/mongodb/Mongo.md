@@ -92,22 +92,26 @@ Query byText = TextQuery.queryText(textCriteria).sortByScore().with(PageRequest.
 List<Person> people = mongoTemplate.find(byText, Person.class)
 ```
 
-## Insert vs Save
+## [Mongo Repository](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/repository/MongoRepository.html)
+[Reference](https://www.baeldung.com/spring-data-mongodb-tutorial)
+
+### Insert vs Save
 Insert with existing ID, throws an error.</br>
 Save with existing ID, updates old record. Save can be use seen as **insertOrUpdate**.</br>
 Use insert for new documents and save for updates.
 
-### Batch insert : One round trip to database
-For saving multiple records use insertAll
+### Batch insert : Using mongoTemplate
+For saving multiple records use insertAll, as it uses only one round trip to database.
 ```
 List<Person> people = Arrays.asList(a,b,c);
 mongoTemplate.insertAll(people);
 ```
-### Batch update
-Use ```mongoTemplate.updateMulti()```
 
-## Remove
-remove(), findAllAndRemove(criteriaQuery)
+### Using mongoRepository
+```
+List<Person> people = Arrays.asList(a,b,c);
+mongoRepository.saveAll(people);
+```
 
 ## Mongo Converters
 Transform object before saving in DB.
@@ -121,3 +125,5 @@ We want to store address as a concatenated String:
 ```
 "address":"Paris,France"
 ```
+
+## [Uploading image](https://www.baeldung.com/spring-boot-mongodb-upload-file)
