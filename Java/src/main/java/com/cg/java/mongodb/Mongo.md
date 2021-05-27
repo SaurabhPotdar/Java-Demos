@@ -59,7 +59,35 @@ Query byAgeQuery = Query.query(new Criteria())
     .orOperator(Criteria.where("age").is(18),
                (Criteria.where("nbSeats").gte(2))
 );
-List<Person> people = this.mongoTemplate.find(byAgeQuery, Person.class)
+List<Person> people = mongoTemplate.find(byAgeQuery, Person.class)
 ```
 ### Mongo Filter Operators
 is/ne(equality), lt/lte(less than), gt/gte(greater than), in(value in list), exists(has value), regex(patterns)
+
+## Full Text Search(FTS)
+Each document is scanned and a score is computed based on text index weights, results are then sorted by this score.</br>
+Default weight is 1.
+```
+private String name;
+@TextIndexed private String title;
+@TextIndexed(weight=2) private String aboutMe;
+```
+Input:
+```
+{name:"Dan", title:"Java Developer", aboutMe:"I am a programmer"},
+{name:"Java Guru", title:"Java Developer", aboutMe:"I am a programmer"},
+{name:"John", title:"Developer", aboutMe:"I am a Java programmer"}
+```
+When we search by _Java_, we get
+```
+Jonn
+Dan
+```
+John is first as aboutMe has more weight. Also Java Guru is not in the o/p as it is not indexed.
+
+### Executing a FTS
+```
+TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matching(text);
+Query byText = TextQuery.queryText(textCriteria).sortByScore().with(PageRequest.of(1,10));
+List<Person> people = mongoTemplate.find(byText, Person.class)
+```
