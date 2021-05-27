@@ -91,3 +91,33 @@ TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matching(text);
 Query byText = TextQuery.queryText(textCriteria).sortByScore().with(PageRequest.of(1,10));
 List<Person> people = mongoTemplate.find(byText, Person.class)
 ```
+
+## Insert vs Save
+Insert with existing ID, throws an error.</br>
+Save with existing ID, updates old record. Save can be use seen as **insertOrUpdate**.</br>
+Use insert for new documents and save for updates.
+
+### Batch insert : One round trip to database
+For saving multiple records use insertAll
+```
+List<Person> people = Arrays.asList(a,b,c);
+mongoTemplate.insertAll(people);
+```
+### Batch update
+Use ```mongoTemplate.updateMulti()```
+
+## Remove
+remove(), findAllAndRemove(criteriaQuery)
+
+## Mongo Converters
+Transform object before saving in DB.
+```
+"address":{
+    "city":"Paris",
+    "country":"France"
+}
+```
+We want to store address as a concatenated String:
+```
+"address":"Paris,France"
+```
