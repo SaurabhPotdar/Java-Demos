@@ -113,6 +113,24 @@ List<Person> people = Arrays.asList(a,b,c);
 mongoRepository.saveAll(people);
 ```
 
+## Object References
+To link multiple documents that are related. Try to minimize the number of relationships(keep it denormalized). We can link documents using ```@DBRef```.</br>
+Cascading does not work by default, so ```mongoRepository.save(parent)``` will not save the child automatically.</br>
+e.g Aircraft has engine
+```
+engineRepository.save(engine);  //First save child entity
+aircraft.setEngine(engine);
+aircraftRepository.save(engine);  //save parent entity
+```
+We can also use ```@CascadeSave``` to enable cascade save
+```
+@DBRef
+@CascadeSave
+```
+
+### Lazy loading
+```@DBRef(lazy=true) private Engine engine;```
+
 ## Mongo Converters
 Transform object before saving in DB.
 ```
