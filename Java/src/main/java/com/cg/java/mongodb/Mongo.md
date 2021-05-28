@@ -1,5 +1,8 @@
 ## [Installing Mongo DB](https://www.c-sharpcorner.com/article/how-to-set-up-and-starts-with-mongodb/#:~:text=Click%20on%20environment%20variables%20button,Program%20Files%5CMongoDB%5C%E2%80%9D)
 
+## Starting Mongo DB server
+Open CMD in C:\Program Files\MongoDB and rum command **mongod**.
+
 ## Connecting using Spring Boot
 **Default credentials**: spring.data.mongodb.uri=mongodb://localhost:27017/airportdb
 spring.data.mongodb.uri=mongodb://username:password@localhost:27017/airportdb
