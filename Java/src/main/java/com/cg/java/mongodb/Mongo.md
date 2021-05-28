@@ -134,11 +134,7 @@ engineRepository.save(engine);  //First save child entity
 aircraft.setEngine(engine);
 aircraftRepository.save(engine);  //save parent entity
 ```
-We can also use ```@CascadeSave``` to enable cascade save
-```
-@DBRef
-@CascadeSave
-```
+We can also create ```@CascadeSave``` annotation using life cycle events.
 
 ### Lazy loading
 ```@DBRef(lazy=true) private Engine engine;```
