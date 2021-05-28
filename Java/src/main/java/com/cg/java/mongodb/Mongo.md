@@ -127,3 +127,19 @@ We want to store address as a concatenated String:
 ```
 
 ## [Uploading image](https://www.baeldung.com/spring-boot-mongodb-upload-file)
+
+## Life cycle events
+We can implement methods in the interface AbstractMongoEventListener.
+### Save/Update
+1. **onBeforeConvert** is called before POJO converted to Document by MongoConverter
+2. **onBeforeSave**
+3. **onAfterSave**
+
+### Load
+When we call findOne,..
+1. **onAfterLoad** is called after Document retrieved from database
+2. **onAfterConvert** is called before Document converted to POJO
+
+### Delete
+1. **onBeforeDelete**
+2. **onAfterDelete**
