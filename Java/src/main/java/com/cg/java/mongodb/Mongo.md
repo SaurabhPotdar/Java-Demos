@@ -131,13 +131,13 @@ private List<Engine> engine;  //One to Many
 ### Cascading
 ```
 @PostMapping()
-	public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
-		Engine engine = flight.getEngine();
-		if(engine!=null)
-			engineRepository.save(engine);  //First save child entity, then parent
-		flightRepository.save(flight);
-		return new ResponseEntity<>("Inserted successfully",HttpStatus.OK);
-	}
+public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
+	Engine engine = flight.getEngine();
+	if(engine!=null)
+		engineRepository.save(engine);  //First save child entity, then parent
+	flightRepository.save(flight);
+	return new ResponseEntity<>("Inserted successfully",HttpStatus.OK);
+}
 ```
 We can also create ```@CascadeSave``` annotation using life cycle events.
 
