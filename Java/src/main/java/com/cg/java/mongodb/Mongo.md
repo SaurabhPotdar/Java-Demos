@@ -118,6 +118,15 @@ To link multiple documents that are related. Try to minimize the number of relat
 Cascading does not work by default, so ```mongoRepository.save(parent)``` will not save the child automatically.</br>
 e.g Aircraft has engine
 ```
+@DBRef
+private Engine engine;  //One to One
+```
+```
+@DBRef
+private List<Engine> engine;  //One to Many
+```
+### Cascading
+```
 engineRepository.save(engine);  //First save child entity
 aircraft.setEngine(engine);
 aircraftRepository.save(engine);  //save parent entity
@@ -147,7 +156,8 @@ We want to store address as a concatenated String:
 ## [Uploading image](https://www.baeldung.com/spring-boot-mongodb-upload-file)
 
 ## Life cycle events
-We can implement methods in the interface AbstractMongoEventListener.
+We can use lifecycle events for cascading,..</br>
+We can implement lifecycle methods in the interface AbstractMongoEventListener.
 ### Save/Update
 1. **onBeforeConvert** is called before POJO converted to Document by MongoConverter
 2. **onBeforeSave**
