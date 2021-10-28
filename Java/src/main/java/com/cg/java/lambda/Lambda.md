@@ -1,6 +1,6 @@
 ![alt text](https://github.com/SaurabhPotdar/Java-Demos/blob/main/Java/src/main/java/com/cg/java/lambda/Screenshot%202021-05-20%20155209.png)
 
-1. None of the above functional interfaces have a throws declaration, we need to try-catch any compile time exceptions our lambda throws. 
+1. None of the above functional interfaces have a throws declaration, we need to try-catch any compile time exceptions our lambda throws. We can create our own FunctionalInterface which throws compile time exception, then our lambda can throw this exception.
 
 2. Variables used in lambda should be final or effectively final.
 ```
