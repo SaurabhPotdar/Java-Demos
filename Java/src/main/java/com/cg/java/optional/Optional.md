@@ -13,6 +13,11 @@ if (s != null) {
 ```
 The real advantage of Optional api is methods like eg. orElse(), orElseThrow(), ifPresent(), filter(), map()
  ```
+ opt.map().filter(1).map(2)
+ //If the filter(1) returns empty optional, then map(2) will not throw exception and we get empty optional
+ //So we can chain operations without worrying about null pointer exception.
+ ```
+ ```
  someFunc().map(String::toUpperCase)
     .ifPresent(System.out::println);
  ```  
